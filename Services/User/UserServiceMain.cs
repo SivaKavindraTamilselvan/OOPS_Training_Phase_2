@@ -45,7 +45,7 @@ internal partial class UserService : IUserService
 
         User createdUser = userRepo.Create(user);
 
-        Console.WriteLine("User Added Successfully");
+        Console.WriteLine("User Added Successfully. Wait until the Email is sent!!");
 
         string message = $"Successfully created an account with the details\n\nUserId : {createdUser.userId}\nName : {createdUser.Name}\nPhoneNumber : {createdUser.PhoneNumber}\nEmail : {createdUser.Email}\n\nThank You!";
         emailService.Send(message, createdUser);

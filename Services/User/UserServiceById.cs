@@ -55,7 +55,7 @@ internal partial class UserService : IUserService
 
         if(updatedUser != null)
         {
-            Console.WriteLine("User Updated Successfully");
+            Console.WriteLine("User Updated Successfully. Wait for the Email to be sent!!");
             string message = $"Successfully updated your account with the details\nName : {updatedUser.Name}\nPhoneNumber : {updatedUser.PhoneNumber}\nEmail : {updatedUser.Email}\n\nThank You!";
             emailService.Send(message, updatedUser);
             smsService.Send(message, updatedUser);

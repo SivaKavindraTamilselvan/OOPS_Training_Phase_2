@@ -28,6 +28,7 @@ internal partial class UserService : IUserService
             if (item.Email == email)
             {
                 userRepo.Delete(item.userId);
+                Console.WriteLine("User Deleted Successfully ! Wait for the Email to be sent");
                 string message = $"Successfully deleted your account with the details\nName : {item.Name}\nPhoneNumber : {item.PhoneNumber}\nEmail : {item.Email}\n\nThank You!";
                 emailService.Send(message, item);
                 smsService.Send(message, item);
