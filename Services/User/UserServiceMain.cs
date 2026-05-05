@@ -47,7 +47,7 @@ internal partial class UserService : IUserService
 
         Console.WriteLine("User Added Successfully");
 
-        string message = $"Successfully created an account with the details\nUserId\nId:{createdUser.userId}\nName : {createdUser.Name}\nPhoneNumber : {createdUser.PhoneNumber}\nEmail : {createdUser.Email}\n\nThank You!";
+        string message = $"Successfully created an account with the details\n\nUserId : {createdUser.userId}\nName : {createdUser.Name}\nPhoneNumber : {createdUser.PhoneNumber}\nEmail : {createdUser.Email}\n\nThank You!";
         emailService.Send(message, createdUser);
         smsService.Send(message, createdUser);
 
@@ -56,7 +56,11 @@ internal partial class UserService : IUserService
     public void PrintAllUsers()
     {
         var UserList = userRepo.GetAll();
-        if(UserList == null) return;
+        if(UserList == null)
+        {
+            Console.WriteLine("No User Found");
+            return;
+        }
         foreach (var item in UserList)
         {
             Console.WriteLine(item);

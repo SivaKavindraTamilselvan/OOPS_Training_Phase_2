@@ -22,6 +22,7 @@ internal partial class SMSService : INotification
        Console.WriteLine($"Date - {dateTime}");
        Console.WriteLine($"Message - {message}");
        status = "sent";
+       Console.WriteLine("SMS Sent Successfully");
        Log(message,user);
     }
 }
