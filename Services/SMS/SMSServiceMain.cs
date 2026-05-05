@@ -4,7 +4,7 @@ using NotificationApp.Validation;
 
 namespace NotificationApp.Services;
 
-internal class SMSService : INotification
+internal partial class SMSService : INotification
 {
     private string status = "pending";
     private DateTime? dateTime= null;
@@ -23,17 +23,5 @@ internal class SMSService : INotification
        Console.WriteLine($"Message - {message}");
        status = "sent";
        Log(message,user);
-    }
-    private bool CheckValidation(User user)
-    {
-        return PhoneNumberValidation.isValidPhoneNumber(user.PhoneNumber??"");
-    }
-
-    private void Log(string message,User user)
-    {
-        Console.WriteLine("---------------------------------------------");
-        Console.WriteLine("Logging the Information - SMS Service");
-        Console.WriteLine($"The SMS Services\nFrom : sivakavindra@gmail.com\nTo : {user.Email}\nStatus : {status}\nDate & Time : {dateTime}\nMessage : {message}");
-        Console.WriteLine("---------------------------------------------");
     }
 }
