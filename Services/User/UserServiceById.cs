@@ -15,7 +15,7 @@ internal partial class UserService : IUserService
     {
         var user = userRepo.Delete(id);
         if(user==null) return null;
-        Console.WriteLine("User Deleted Successfully ! Wait for the Email to be sent");
+        Console.WriteLine("User Deleted Successfully ! Wait for the Email && SMS to be sent");
         string message = $"Successfully deleted your account with the details\nName : {user.Name}\nPhoneNumber : {user.PhoneNumber}\nEmail : {user.Email}\n\nThank You!";
         emailService.Send(message, user);
         smsService.Send(message, user);
@@ -45,7 +45,7 @@ internal partial class UserService : IUserService
             Console.WriteLine("Invalid Email Entered.Enter Vaild Email Address");
             email = Console.ReadLine() ?? "";
         }
-        if(GetUserByEmail(email) != null)
+        if(GetUserByEmail(email) != null && user.Email!=email)
         {
             Console.WriteLine("Aldready Email is Registered with This Email");
             return null;
@@ -66,7 +66,7 @@ internal partial class UserService : IUserService
 
         if(updatedUser != null)
         {
-            Console.WriteLine("User Updated Successfully. Wait for the Email to be sent!!");
+            Console.WriteLine("User Updated Successfully. Wait for the Email && SMS to be sent!!");
             string message = $"Successfully updated your account with the details\nName : {updatedUser.Name}\nPhoneNumber : {updatedUser.PhoneNumber}\nEmail : {updatedUser.Email}\n\nThank You!";
             emailService.Send(message, updatedUser);
             smsService.Send(message, updatedUser);
