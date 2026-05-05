@@ -10,7 +10,7 @@ internal partial class UserService : IUserService
     EmailService emailService = new EmailService();
     SMSService smsService = new SMSService();
     IRepository<int, User> userRepo = new UserRepository();
-    public User AddUser()
+    public User? AddUser()
     {
         User user = new User();
         Console.WriteLine("Enter Your Name");
@@ -30,7 +30,11 @@ internal partial class UserService : IUserService
             Console.WriteLine("Invalid Email Entered.Enter Vaild Email Address");
             email = Console.ReadLine() ?? "";
         }
-
+        if(GetUserByEmail(email) != null)
+        {
+            Console.WriteLine("Aldready Email is Registered with This Email");
+            return null;
+        }
         Console.WriteLine("Enter Your PhoneNumber");
 
         string phone = Console.ReadLine() ?? "";
@@ -43,7 +47,7 @@ internal partial class UserService : IUserService
         user.Email = email;
         user.PhoneNumber = phone;
 
-        User createdUser = userRepo.Create(user);
+        var createdUser = userRepo.Create(user);
 
         Console.WriteLine("User Added Successfully. Wait until the Email is sent!!");
 

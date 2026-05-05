@@ -3,7 +3,7 @@ namespace NotificationApp.Interfaces;
 
 internal interface IUserService
 {
-    public User AddUser();
+    public User? AddUser();
     public void PrintAllUsers();
     public User? GetUserById(int id);
     public User? GetUserByEmail(string email);

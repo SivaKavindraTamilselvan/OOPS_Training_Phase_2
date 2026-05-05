@@ -4,7 +4,6 @@ namespace NotificationApp.Repository;
 internal abstract class AbstractRepository<K,T> : IRepository<K,T> where T : class where K : notnull
 {
     protected Dictionary<K,T> items = new();
-
     public abstract T Create(T item);
 
     public T? Get(K key)

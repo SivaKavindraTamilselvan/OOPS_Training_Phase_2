@@ -45,7 +45,8 @@ internal class Program
             {
                 case 1:
                 {
-                    User user = userService.AddUser();
+                    var user = userService.AddUser();
+                    if(user == null) Console.WriteLine("User not added");
                     break;
                 }
 
