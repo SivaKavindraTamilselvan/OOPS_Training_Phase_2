@@ -1,6 +1,7 @@
 using NotificationApp.Models;
 using NotificationApp.Validation;
 using NotificationApp.Interfaces;
+using NotificationApp.Repository;
 
 namespace NotificationApp.Services;
 
@@ -12,6 +13,7 @@ internal class UserService : IUserService
     EmailService emailService = new EmailService();
     SMSService smsService = new SMSService();
 
+    IRepository<int, User> userRepo = new UserRepository();
     public User AddUser()
     {
         User user = new User();
@@ -41,10 +43,11 @@ internal class UserService : IUserService
             Console.WriteLine("Invalid Phone Number Entered.Enter Valid PhoneNumber");
             phone = Console.ReadLine() ?? "";
         }
-        user.userId = ++userId;
         user.Name = name;
         user.Email = email;
         user.PhoneNumber = phone;
+
+        userRepo.Create(user);
 
         users.Add(user.userId,user);
         Console.WriteLine("User Added Successfully");
