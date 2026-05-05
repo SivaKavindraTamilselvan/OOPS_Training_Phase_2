@@ -9,6 +9,4 @@ internal interface IUserService
     public void PrintAllUsers();
     public User? DeleteUserByPhoneNumber(string phonenumber);
     public User? DeleteUserByEmail(string email);
-    public bool CheckUser(User user);
-
 }

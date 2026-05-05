@@ -26,12 +26,6 @@ internal class SMSService : INotification
     }
     private bool CheckValidation(User user)
     {
-        UserService userService = new UserService();
-        if(!userService.CheckUser(user))
-        {
-            Console.WriteLine("User Not Found");
-            return false;
-        }
         return PhoneNumberValidation.isValidPhoneNumber(user.PhoneNumber??"");
     }
 

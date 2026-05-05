@@ -22,6 +22,6 @@ internal class User
 
     public override string ToString()
     {
-        return $"Name : {Name}\nEmail : {Email}\nPhoneNumber : {PhoneNumber}";
+        return $"UserId : {userId}\nName : {Name}\nEmail : {Email}\nPhoneNumber : {PhoneNumber}";
     }
 }

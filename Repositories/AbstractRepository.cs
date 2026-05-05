@@ -16,6 +16,16 @@ internal abstract class AbstractRepository<K,T> : IRepository<K,T> where T : cla
         return null;
     }
 
+    public List<T> GetAll()
+    {
+        if(items.Count == 0)
+        {
+            return null;
+        }
+        var list = items.Values.ToList();
+        return list;
+    }
+
     public T? Update(K key,T item)
     {
         if(!items.ContainsKey(key))

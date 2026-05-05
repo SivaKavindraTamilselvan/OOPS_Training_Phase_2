@@ -70,12 +70,6 @@ internal class EmailService : INotification
 
     private bool CheckValidation(User user)
     {
-        UserService userService = new UserService();
-        if(!userService.CheckUser(user))
-        {
-            Console.WriteLine("User Not Found");
-            return false;
-        }
         return EmailValidation.isValidEmail(user.Email??"");
     }
 
