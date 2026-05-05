@@ -10,6 +10,17 @@ internal partial class UserService : IUserService
     {
         return userRepo.Get(id);
     }
+
+    public User? DeleteUserById(int id)
+    {
+        var user = userRepo.Delete(id);
+        if(user==null) return null;
+        Console.WriteLine("User Deleted Successfully ! Wait for the Email to be sent");
+        string message = $"Successfully deleted your account with the details\nName : {user.Name}\nPhoneNumber : {user.PhoneNumber}\nEmail : {user.Email}\n\nThank You!";
+        emailService.Send(message, user);
+        smsService.Send(message, user);
+        return user;
+    }
     public User? UpdateUserById(int userId)
     {
         var user = GetUserById(userId);

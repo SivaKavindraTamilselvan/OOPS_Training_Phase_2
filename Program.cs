@@ -31,6 +31,7 @@ internal class Program
             Console.WriteLine("Enter 8 To Deliver The Message To A User By Phone Number");
             Console.WriteLine("Enter 9 To Get User By Id");
             Console.WriteLine("Enter 10 To Update User By Id");
+            Console.WriteLine("Enter 11 To Delete User By Id");
             Console.WriteLine("Enter 0 To Quit The Loop");
             Console.WriteLine("------------------------------------------------");
 
@@ -154,6 +155,13 @@ internal class Program
                 {
                     int userid = inputCheck.UserIdInputs();
                     var user = userService.UpdateUserById(userid);
+                    Console.WriteLine(user);
+                    break;
+                }
+                case 11:
+                {
+                    int userid = inputCheck.UserIdInputs();
+                    var user = userService.DeleteUserById(userid);
                     Console.WriteLine(user);
                     break;
                 }

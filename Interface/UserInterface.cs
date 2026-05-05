@@ -11,5 +11,5 @@ internal interface IUserService
     public User? DeleteUserByPhoneNumber(string phonenumber);
     public User? DeleteUserByEmail(string email);
     public User? UpdateUserById(int userid);
-
+    public User? DeleteUserById(int userid);
 }
