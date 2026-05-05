@@ -128,6 +128,69 @@ internal class UserService : IUserService
         return null;
     }
 
+    public User? UpdateUserById(int userId)
+    {
+        User user = GetUserById(userId);
+        if(user == null)
+        {
+            return null;
+        }
+        Console.WriteLine("Enter 1 To Update the Email");
+        Console.WriteLine("Enter 2 To Update the PhoneNumber");
+        Console.WriteLine("Enter 3 To Update the Name");
+        int choice;
+        while(!int.TryParse(Console.ReadLine(),out choice) || choice<0 || choice>3)
+        {
+            Console.WriteLine("Enter Valid Inuput");
+        }
+        switch (choice)
+        {
+            case 1:
+            {
+                string email = Console.ReadLine() ?? "";
+                while(!EmailValidation.isValidEmail(email))
+                {
+                    Console.WriteLine("Invalid Email Entered.Enter Vaild Email Address");
+                    email = Console.ReadLine() ?? "";
+                }
+                if(GetUserByEmail(email) != null)
+                {
+                    Console.WriteLine("Aldready User with the Email is Registered");
+                    break;
+                }
+                user.Email = email;
+                Console.WriteLine("User updated Successfully");
+                break;
+            }
+            case 2:
+            {
+                Console.WriteLine("Enter Your PhoneNumber");
+                string phone = Console.ReadLine() ?? "";
+                while (!PhoneNumberValidation.isValidPhoneNumber(phone))
+                {
+                    Console.WriteLine("Invalid Phone Number Entered.Enter Valid PhoneNumber");
+                    phone = Console.ReadLine() ?? "";
+                }
+                user.PhoneNumber = phone;
+                Console.WriteLine("User updated Successfully");
+                break;
+            }
+            case 3:
+            {
+                Console.WriteLine("Enter the Name To Be Updated");
+                string name = Console.ReadLine() ?? "";
+                while(name.Trim() == "")
+                {
+                    Console.WriteLine("Inavlid Name.Name Should Not be Empty.Enter Valid Name");
+                    name = Console.ReadLine() ?? "";
+                }
+                user.Name = name;
+                Console.WriteLine("User updated Successfully");
+                break;
+            }
+        }
+        return user;
+    }
     public bool CheckUser(User user)
     {
         foreach(var item in users.Values)

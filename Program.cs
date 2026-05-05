@@ -28,12 +28,13 @@ internal class Program
             Console.WriteLine("Enter 7 To Deliver The Message To A User By Email");
             Console.WriteLine("Enter 8 To Deliver The Message To A User By Phone Number");
             Console.WriteLine("Enter 9 To Get User By Id");
+            Console.WriteLine("Enter 10 To Update User By Id");
             Console.WriteLine("Enter 0 To Quit The Loop");
             Console.WriteLine("------------------------------------------------");
 
             int typechoice;
 
-            while (!int.TryParse(Console.ReadLine(), out typechoice) || typechoice > 9 || typechoice < 0)
+            while (!int.TryParse(Console.ReadLine(), out typechoice) || typechoice > 10 || typechoice < 0)
             {
                 Console.WriteLine("Enter Vaild Input");
             }
@@ -219,7 +220,18 @@ internal class Program
                     Console.WriteLine(user);
                     break;
                 }
-
+                case 10:
+                {
+                    Console.WriteLine("Enter UserId");
+                    int userid;
+                    while(!int.TryParse(Console.ReadLine(),out userid) || userid < 0)
+                    {
+                        Console.WriteLine("Enter Vaild Input");
+                    }
+                    User user = userService.UpdateUserById(userid);
+                    Console.WriteLine(user);
+                    break;
+                }
                 case 0:
                 {
                     return;
