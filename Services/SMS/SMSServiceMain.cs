@@ -4,10 +4,12 @@ using NotificationApp.Validation;
 
 namespace NotificationApp.Services;
 
+//partial class imolemented to avoid long code
 internal partial class SMSService : INotification
 {
     private string status = "pending";
     private DateTime? dateTime= null;
+    //just implement console based message service
     public void Send(string message,User user)
     {
         if(!CheckValidation(user))

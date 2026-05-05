@@ -6,10 +6,12 @@ using NotificationApp.Validation;
 
 namespace NotificationApp.Services;
 
+//partial class imolemented to avoid long code
 internal partial class EmailService : INotification
 {
     private string status = "pending";
     private DateTime? dateTime= null;
+    //real email it sent
     public void Send(string message,User user)
     {
         try
@@ -19,7 +21,7 @@ internal partial class EmailService : INotification
                 Console.WriteLine("Invalid User Details");
                 return;
             }
-        
+            //to get the data from env for security in version control
             string fromEmail = Environment.GetEnvironmentVariable("CompanyEmail") ?? "";
             string? fromName = Environment.GetEnvironmentVariable("CompanyName") ?? "";
 

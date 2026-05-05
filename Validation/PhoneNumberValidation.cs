@@ -4,6 +4,7 @@ namespace NotificationApp.Validation;
 
 internal class PhoneNumberValidation
 {
+    //implementation of phone validation by using regex pattern
     public static bool isValidPhoneNumber(string phonenumber)
     {
         string checkPhoneNumber = phonenumber.Trim();

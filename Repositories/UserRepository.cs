@@ -4,6 +4,7 @@ namespace NotificationApp.Repository;
 internal partial class UserRepository : AbstractRepository<int,User>
 {
     static int userId = 0;
+    //override the create function
     public override User Create(User user)
     {
         user.userId = ++userId;

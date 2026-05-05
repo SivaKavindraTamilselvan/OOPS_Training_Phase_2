@@ -6,6 +6,7 @@ namespace NotificationApp.Services;
 
 internal partial class SMSService : INotification
 {
+    //log the information in console
     private void Log(string message,User user)
     {
         Console.WriteLine("---------------------------------------------");

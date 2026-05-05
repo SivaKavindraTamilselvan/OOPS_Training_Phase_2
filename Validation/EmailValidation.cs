@@ -4,6 +4,7 @@ namespace NotificationApp.Validation;
 
 internal class EmailValidation
 {
+    //implementation of email validation by using regex pattern
     public static bool isValidEmail(string email)
     {
         string checkEmail=email.Trim();

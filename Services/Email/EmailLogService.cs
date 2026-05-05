@@ -8,6 +8,7 @@ namespace NotificationApp.Services;
 
 internal partial class EmailService : INotification
 {
+    //log the message in the console
     private void Log(string message,User user)
     {
         Console.WriteLine("---------------------------------------------");

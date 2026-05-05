@@ -5,6 +5,7 @@ namespace NotificationApp.Inputs;
 
 internal class InputsCheck
 {
+    //program.cs inputs and console.writeline is used
     public string EmailInputs()
     {
         string email = Console.ReadLine() ?? string.Empty;
