@@ -53,6 +53,13 @@ internal partial class UserService : IUserService
 
         var updatedUser = userRepo.Update(userId,user);
 
+        if(updatedUser != null)
+        {
+            Console.WriteLine("User Updated Successfully");
+            string message = $"Successfully updated your account with the details\nName : {updatedUser.Name}\nPhoneNumber : {updatedUser.PhoneNumber}\nEmail : {updatedUser.Email}\n\nThank You!";
+            emailService.Send(message, updatedUser);
+            smsService.Send(message, updatedUser);
+        }
         return updatedUser;
     }
 }
