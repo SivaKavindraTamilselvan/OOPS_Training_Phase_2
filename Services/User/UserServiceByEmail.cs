@@ -9,6 +9,7 @@ internal partial class UserService : IUserService
     public User? GetUserByEmail(string email)
     {
         var UserList = userRepo.GetAll();
+        if(UserList == null) return null;
         foreach (var item in UserList)
         {
             if (item.Email == email)
@@ -21,6 +22,7 @@ internal partial class UserService : IUserService
     public User? DeleteUserByEmail(string email)
     {
         var UserList = userRepo.GetAll();
+        if(UserList == null) return null;
         foreach (var item in UserList)
         {
             if (item.Email == email)

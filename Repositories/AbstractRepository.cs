@@ -16,7 +16,7 @@ internal abstract class AbstractRepository<K,T> : IRepository<K,T> where T : cla
         return null;
     }
 
-    public List<T> GetAll()
+    public List<T>? GetAll()
     {
         if(items.Count == 0)
         {

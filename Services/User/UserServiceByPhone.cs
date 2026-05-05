@@ -9,6 +9,7 @@ internal partial class UserService : IUserService
     public User? GetUserByPhoneNumber(string phonenumber)
     {
         var UserList = userRepo.GetAll();
+        if(UserList == null) return null;
         foreach (var item in UserList)
         {
             if (item.PhoneNumber == phonenumber)
@@ -22,6 +23,7 @@ internal partial class UserService : IUserService
     public User? DeleteUserByPhoneNumber(string phonenumber)
     {
         var UserList = userRepo.GetAll();
+        if(UserList == null) return null;
         foreach (var item in UserList)
         {
             if (item.PhoneNumber == phonenumber)

@@ -7,8 +7,6 @@ namespace NotificationApp.Services;
 
 internal partial class UserService : IUserService
 {
-    static int userId = 0;
-    static Dictionary<int, User> users = new Dictionary<int, User>();
     EmailService emailService = new EmailService();
     SMSService smsService = new SMSService();
     IRepository<int, User> userRepo = new UserRepository();
@@ -58,6 +56,7 @@ internal partial class UserService : IUserService
     public void PrintAllUsers()
     {
         var UserList = userRepo.GetAll();
+        if(UserList == null) return;
         foreach (var item in UserList)
         {
             Console.WriteLine(item);
