@@ -1,0 +1,18 @@
+using System.Net;
+using System.Net.Mail;
+using NotificationApp.Interfaces;
+using NotificationApp.Models;
+using NotificationApp.Validation;
+
+namespace NotificationApp.Services;
+
+internal partial class EmailService : INotification
+{
+    private void Log(string message,User user)
+    {
+        Console.WriteLine("---------------------------------------------");
+        Console.WriteLine("Logging the Information - Email Service");
+        Console.WriteLine($"The Email Services\nFrom : sivakavindra@gmail.com\nTo : {user.Email}\nStatus : {status}\nDate & Time : {dateTime}\nMessage : {message}");
+        Console.WriteLine("---------------------------------------------");
+    }
+}

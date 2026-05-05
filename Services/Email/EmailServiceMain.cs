@@ -6,7 +6,7 @@ using NotificationApp.Validation;
 
 namespace NotificationApp.Services;
 
-internal class EmailService : INotification
+internal partial class EmailService : INotification
 {
     private string status = "pending";
     private DateTime? dateTime= null;
@@ -60,17 +60,4 @@ internal class EmailService : INotification
         }
         Log(message,user);
     }
-    private void Log(string message,User user)
-    {
-        Console.WriteLine("---------------------------------------------");
-        Console.WriteLine("Logging the Information - Email Service");
-        Console.WriteLine($"The Email Services\nFrom : sivakavindra@gmail.com\nTo : {user.Email}\nStatus : {status}\nDate & Time : {dateTime}\nMessage : {message}");
-        Console.WriteLine("---------------------------------------------");
-    }
-
-    private bool CheckValidation(User user)
-    {
-        return EmailValidation.isValidEmail(user.Email??"");
-    }
-
 }
