@@ -49,7 +49,7 @@ internal partial class UserService : IUserService
 
         var createdUser = userRepo.Create(user);
 
-        Console.WriteLine("User Added Successfully. Wait until the Email is sent!!");
+        Console.WriteLine("User Added Successfully. Wait until the Email && SMS is sent!!");
 
         string message = $"Successfully created an account with the details\n\nUserId : {createdUser.userId}\nName : {createdUser.Name}\nPhoneNumber : {createdUser.PhoneNumber}\nEmail : {createdUser.Email}\n\nThank You!";
         emailService.Send(message, createdUser);

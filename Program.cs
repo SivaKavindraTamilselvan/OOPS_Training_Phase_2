@@ -37,7 +37,7 @@ internal class Program
 
             int typechoice;
 
-            while (!int.TryParse(Console.ReadLine(), out typechoice) || typechoice > 10 || typechoice < 0)
+            while (!int.TryParse(Console.ReadLine(), out typechoice) || typechoice > 11 || typechoice < 0)
             {
                 Console.WriteLine("Enter Vaild Input");
             }
@@ -148,6 +148,7 @@ internal class Program
                 {
                     int userid = inputCheck.UserIdInputs();
                     var user = userService.GetUserById(userid);
+                    if(user == null) Console.WriteLine("User not found");
                     Console.WriteLine(user);
                     break;
                 }
@@ -155,6 +156,7 @@ internal class Program
                 {
                     int userid = inputCheck.UserIdInputs();
                     var user = userService.UpdateUserById(userid);
+                    if(user == null) Console.WriteLine("User not found");
                     Console.WriteLine(user);
                     break;
                 }
@@ -162,6 +164,7 @@ internal class Program
                 {
                     int userid = inputCheck.UserIdInputs();
                     var user = userService.DeleteUserById(userid);
+                    if(user == null) Console.WriteLine("User not found");
                     Console.WriteLine(user);
                     break;
                 }
