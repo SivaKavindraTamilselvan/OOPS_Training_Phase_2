@@ -6,7 +6,9 @@ namespace NotificationApp.Services;
 
 internal class UserService : IUserService
 {
-    static List<User> users = new List<User>();
+    static int userId = 0;
+
+    static Dictionary<int,User> users = new Dictionary<int, User>();
     EmailService emailService = new EmailService();
     SMSService smsService = new SMSService();
 
@@ -39,11 +41,12 @@ internal class UserService : IUserService
             Console.WriteLine("Invalid Phone Number Entered.Enter Valid PhoneNumber");
             phone = Console.ReadLine() ?? "";
         }
+        user.userId = ++userId;
         user.Name = name;
         user.Email = email;
         user.PhoneNumber = phone;
 
-        users.Add(user);
+        users.Add(user.userId,user);
         Console.WriteLine("User Added Successfully");
 
         string message = $"Successfully created an account with the details\nName : {name}\nPhoneNumber : {phone}\nEmail : {email}\n\nThank You!";
@@ -53,9 +56,17 @@ internal class UserService : IUserService
         return user;
     }
 
+    public User? GetUserById(int id)
+    {
+        if(users.ContainsKey(id))
+        {
+            return users[id];
+        }
+        return null;
+    }
     public User? GetUserByEmail(string email)
     {
-        foreach(var item in users)
+        foreach(var item in users.Values)
         {
             if(item.Email == email)
             {
@@ -67,7 +78,7 @@ internal class UserService : IUserService
 
     public User? GetUserByPhoneNumber(string phonenumber)
     {
-        foreach(var item in users)
+        foreach(var item in users.Values)
         {
             if(item.PhoneNumber == phonenumber)
             {
@@ -79,7 +90,7 @@ internal class UserService : IUserService
 
     public void PrintAllUsers()
     {
-        foreach(var item in users)
+        foreach(var item in users.Values)
         {
             Console.WriteLine(item);
         }
@@ -87,11 +98,11 @@ internal class UserService : IUserService
 
     public User? DeleteUserByEmail(string email)
     {
-        foreach(var item in users)
+        foreach(var item in users.Values)
         {
             if(item.Email == email)
             {
-                users.Remove(item);
+                users.Remove(item.userId);
                 string message = $"Successfully deleted your account with the details\nName : {item.Name}\nPhoneNumber : {item.PhoneNumber}\nEmail : {item.Email}\n\nThank You!";
                 emailService.Send(message,item);
                 smsService.Send(message,item);
@@ -103,11 +114,11 @@ internal class UserService : IUserService
 
     public User? DeleteUserByPhoneNumber(string phonenumber)
     {
-        foreach(var item in users)
+        foreach(var item in users.Values)
         {
             if(item.PhoneNumber == phonenumber)
             {
-                users.Remove(item);
+                users.Remove(item.userId);
                 string message = $"Successfully deleted your account with the details\nName : {item.Name}\nPhoneNumber : {item.PhoneNumber}\nEmail : {item.Email}\n\nThank You!";
                 emailService.Send(message,item);
                 smsService.Send(message,item);
@@ -119,7 +130,7 @@ internal class UserService : IUserService
 
     public bool CheckUser(User user)
     {
-        foreach(var item in users)
+        foreach(var item in users.Values)
         {
             if(item == user)
             {
