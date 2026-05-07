@@ -13,6 +13,7 @@ internal class EmailValidation
         {
             return false;
         }
+        //regex pattern
         string pattern=@"^[^@\s]+@[^@\s]+\.[^@\s]+$";
 
         return Regex.IsMatch(checkEmail, pattern, RegexOptions.IgnoreCase);

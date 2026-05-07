@@ -1,6 +1,7 @@
 ﻿using NotificationApp.Validation;
 using NotificationApp.Models;
 using NotificationApp.Services;
+using NotificationApp.Interfaces;
 using NotificationApp.Inputs;
 using DotNetEnv;
 using System.Collections;
@@ -13,13 +14,13 @@ internal class Program
         Env.Load();
 
         //display the company details from the models
-        var company = new Company();
+        Company company = new Company();
         Console.WriteLine(company);
         
         //user service object created to handle every user services
-        var userService = new UserService();
+        IUserService userService = new UserService();
         //used for inputs displaying to avoid repeated code
-        var inputCheck = new InputsCheck();
+        InputsCheck inputCheck = new InputsCheck();
 
         while (true)
         {
@@ -150,7 +151,7 @@ internal class Program
                             break;
                         }
                         string message = inputCheck.MessageInputs(email);
-                        EmailService emailService = new EmailService();
+                        INotification emailService = new EmailService();
                         emailService.Send(message, user);
                         break;
                     }
@@ -168,7 +169,7 @@ internal class Program
                             break;
                         }
                         string message = inputCheck.MessageInputs(phone);
-                        SMSService smsService = new SMSService();
+                        INotification smsService = new SMSService();
                         smsService.Send(message, user);
                         break;
                     }

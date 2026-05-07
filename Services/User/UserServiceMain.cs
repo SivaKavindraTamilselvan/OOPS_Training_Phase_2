@@ -7,8 +7,8 @@ namespace NotificationApp.Services;
 
 internal partial class UserService : IUserService
 {
-    EmailService emailService = new EmailService();
-    SMSService smsService = new SMSService();
+    INotification emailService = new EmailService();
+    INotification smsService = new SMSService();
     IRepository<int, User> userRepo = new UserRepository();
     public User? AddUser()
     {

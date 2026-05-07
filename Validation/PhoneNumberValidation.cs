@@ -12,6 +12,7 @@ internal class PhoneNumberValidation
         {
             return false;
         }
+        //regex pattern
         string pattern = @"^[0-9]{10}$";
 
         return Regex.IsMatch(checkPhoneNumber,pattern);
