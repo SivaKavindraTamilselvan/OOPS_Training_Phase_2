@@ -74,3 +74,227 @@ The ENV File will be removed after the evaluation as needed for security purpose
 <img width="3024" height="1964" alt="image" src="https://github.com/user-attachments/assets/cb964cc3-f25e-47e2-9101-34a465e18e22" />
 
 - deletion done using the email
+
+
+## Notification App
+
+
+## Models
+
+- The Models will be created for
+
+    - User
+    - Company
+
+- Override of string is created to print the values along with keys.
+
+## Interfaces
+
+- Interfaces
+    
+    - INotificationService (sending the notification)
+    - IRepository (common functions for all repos)
+    - IUserService created for the service 
+
+## Repositories
+
+- Repositories
+
+    - AbstractRepository (implement IRepository where common functions are defined)
+    - UserRepository (create function)
+
+Interface created for the Repository (Basic CRUD Operations)
+
+- Create
+- Delete
+- Update
+- Get Operation By Id
+- Get All User
+
+This interface repository is used for all the Data and an Abstract class can be defined as the functions are similar and no repetation of the code is not needed.
+
+It can be inherited.
+
+AbstractRepository created implementing the IRepository
+
+- Update
+- Delete
+- Get By iD
+- Get All
+
+these functions are similar so no needed to create this for all the model that are created.
+
+- Create function 
+    
+    - will be different as the attributes and validation are needed to be done which will differ for different for each model. 
+    - so the class repository for other models that are inherited can override the function 
+
+Note - The other functions for each repostory can be additionally added if required as per the requirements
+
+The Repositories that are created
+- User Repository
+
+User Repository
+
+- create function created
+- static variable createad for userId
+- userId will be increased for each user addition
+- all the attributes are validated in the presentation and buisness layer itself
+
+## InputsCheck
+
+- InputsCheck
+
+Used to check if the inputs are entered correctly or not.If not again loop will be used untill correct input is entered.
+
+- EmailInput
+- SMSInput
+- IDInput
+- MessageInput
+
+
+## Services
+
+- Email (real email notification sending implemeneted)
+
+    - SendNotification
+    - LogNotification
+    - Validate notifcation
+
+- SMS  (only console print)
+
+    - SendNotification
+    - LogNotification
+    - Validate notifcation
+
+- User
+
+    - UserServiceByEmail
+
+        - GetUserByEmail
+        - DeleteUserByEmail
+
+    - UserServiceByPhone
+
+        - GetUserByPhone
+        - DeleteUserByPhone
+        
+    - UserServiceById
+
+        - GetUserById
+        - DeleteUserById
+        - UpdateUserById
+
+    - UserServiceMain.cs
+
+        - print all notification
+
+## Validation
+
+- Validation
+
+    - EmailValidation (Regex)
+    - PhoneNumberValidation (Regex)
+    - MessageValidation (Conditions)
+
+## Options used in the application
+
+- Add User
+- Delete User
+    - Delete User By UserId
+    - Delete User By Phone Number
+    - Delete User By Email
+- Update The User
+- Get The User
+    - Get User By Id
+    - Get User By Email
+    - Get User By PhoneNumber
+    - Get All User
+- Deliver Message
+    - Email
+    - SMS   
+
+The files in the project is origanised by the usage of partial class
+
+By cliking the needed options the logic passess
+
+## Functions and its usage 
+
+Add User
+
+- check the phone number and email id
+- no duplicate email user can be added
+- phone number duplication for a user is allowed
+- a user can have only one email and multiple phone number for registration of user account
+- once inputs are checked user added to dictionary
+- after creation notification is sent 
+
+Get User
+
+- GetUserById
+
+    - id input is validated (only number greater than 0)
+    - Call the user service which implemets the Interface UserService
+    - User or null is returned
+    - the service is passed to repo and the data is returned
+
+- GetUserByEmail
+
+    - email is validated (loop untill correct mail is entered)
+    - Call the user service which implemets the Interface UserService
+    - User or null is returned
+    - the service is passed to repo and the data is returned
+
+- GetUserByPhone
+
+    - phone number is validated (loop untill correct mail is entered)
+    - Call the user service which implemets the Interface UserService
+    - User or null is returned
+    - the service is passed to repo and the data is returned
+
+- GetAllUser
+
+    - Call the user service which implemets the Interface UserService
+    - User List or empty list is returned
+    - the service is passed to repo and the data is returned
+
+Delete User
+
+- DeleteUserById
+
+    - id input is validated (only number greater than 0)
+    - Call the user service which implemets the Interface UserService
+    - User or null is returned
+    - the service is passed to repo and the data is returned
+    - if user null an message is displayed
+    - if user found with that id is deleted.
+
+- DeleteUserByEmail
+
+    - email is validated (loop untill correct mail is entered)
+    - Call the user service which implemets the Interface UserService
+    - User or null is returned by checking if user registered or not
+    - the service is passed to repo and the data is returned
+    - if user null an message is displayed
+    - if user found then registered user with that email is deleted
+
+- DeleteUserByPhone
+
+    - phone number is validated (loop untill correct mail is entered)
+    - Call the user service which implemets the Interface UserService
+    - User or null is returned by checking if user registered or not
+    - the service is passed to repo and the data is returned
+    - if user null an message is displayed
+    - if user found then all the resgistered user with that phone number is deleted
+    - all user with the registered phone number is deleted.
+
+- Update user
+
+    - update the user by id
+    - check the phone number and email id
+    - no duplicate email user can be added
+    - check the entered email is not already registered. if found then not possible
+    - phone number duplication for a user is allowed
+    - a user can have only one email and multiple phone number for registration of user account
+    - once inputs are checked user updated to dictionary
+    - after updation notification is sent 
