@@ -6,17 +6,24 @@ using NotificationApp.Repository;
 namespace NotificationApp.Services;
 internal partial class UserService : IUserService
 {
-    public User? GetUserByPhoneNumber(string phonenumber)
+    public List<User>? GetUserByPhoneNumber(string phonenumber)
     {
         var UserList = userRepo.GetAll();
         //if no user is registered
         if(UserList == null) return null;
+
+        var userlist = new List<User>();
         foreach (var item in UserList)
         {
             if (item.PhoneNumber == phonenumber)
             {
-                return item;
+                userlist.Add(item);
             }
+        }
+        Console.WriteLine(userlist);
+        if(userlist.Count != 0)
+        {
+            return userlist;
         }
         return null;
     }

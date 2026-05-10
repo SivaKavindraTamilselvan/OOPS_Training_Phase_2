@@ -88,7 +88,10 @@ internal class Program
                             Console.WriteLine($"No User Found With Phone Number {phone}");
                             break;
                         }
-                        Console.WriteLine(user);
+                        foreach(var item in user)
+                        {
+                            Console.WriteLine(item);
+                        }
                         break;
                     }
                 
@@ -170,7 +173,10 @@ internal class Program
                         }
                         string message = inputCheck.MessageInputs(phone);
                         INotification smsService = new SMSService();
-                        smsService.Send(message, user);
+                        foreach(var item in user)
+                        {
+                            smsService.Send(message, item);
+                        }
                         break;
                     }
                 case 9:
